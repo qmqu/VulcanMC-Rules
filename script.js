@@ -10,19 +10,18 @@ document.querySelectorAll(".accordion").forEach(button => {
 
         const card = button.parentElement;
 
-        // Cierra las demás tarjetas
         document.querySelectorAll(".card").forEach(item => {
             if (item !== card) {
                 item.classList.remove("active");
             }
         });
 
-        // Abre o cierra la seleccionada
         card.classList.toggle("active");
 
     });
 
 });
+
 
 // Animación al hacer scroll
 const observer = new IntersectionObserver((entries) => {
@@ -30,9 +29,7 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
 
         if (entry.isIntersecting) {
-
             entry.target.classList.add("show");
-
         }
 
     });
@@ -41,6 +38,7 @@ const observer = new IntersectionObserver((entries) => {
     threshold: 0.15
 });
 
+
 document.querySelectorAll(".rule-section").forEach(section => {
 
     section.classList.add("hidden");
@@ -48,9 +46,11 @@ document.querySelectorAll(".rule-section").forEach(section => {
 
 });
 
-// Resaltar el enlace activo del menú
+
+// Links activos del menú
 const sections = document.querySelectorAll(".rule-section");
 const links = document.querySelectorAll(".sidebar a");
+
 
 window.addEventListener("scroll", () => {
 
@@ -61,10 +61,11 @@ window.addEventListener("scroll", () => {
         const top = section.offsetTop - 180;
 
         if (scrollY >= top) {
-            current = section.getAttribute("id");
+            current = section.id;
         }
 
     });
+
 
     links.forEach(link => {
 
@@ -78,10 +79,11 @@ window.addEventListener("scroll", () => {
 
 });
 
-// Scroll suave para el botón principal
+
+// Scroll suave
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-    anchor.addEventListener("click", function (e) {
+    anchor.addEventListener("click", function(e) {
 
         e.preventDefault();
 
@@ -98,10 +100,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 });
 
-// Navbar transparente al inicio
+
+// Navbar
 const nav = document.querySelector("nav");
 
 window.addEventListener("scroll", () => {
+
+    if (!nav) return;
 
     if (window.scrollY > 40) {
 
